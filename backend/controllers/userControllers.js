@@ -70,3 +70,14 @@ export const login = async (req, res) => {
   });
   res.status(200).json({ message: `Welcome ${foundUser.name}` });
 };
+
+//Loggin out user
+export const logout = async (req, res) => {
+  //create a new cookie that expires immediately
+  //NOTE: logout should be in quotes
+  res.cookie("userCookie", "logout", {
+    httpOnly: true,
+    expires: new Date(Date.now()),
+  });
+  res.status(200).json({ message: "User logged out" });
+};
