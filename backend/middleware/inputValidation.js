@@ -20,6 +20,7 @@ const withValidationErrors = (validateValues) => {
   ];
 };
 
+//validation for  register inputs
 export const registerValidation = withValidationErrors([
   body("name")
     .notEmpty()
@@ -46,4 +47,18 @@ export const registerValidation = withValidationErrors([
     .withMessage("Password cannot be empty")
     .isLength({ min: 8 })
     .withMessage("Password must be atleast 8 characters"),
+]);
+
+//validations for login inputs
+export const loginValidation = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email cannot be empty")
+    .isEmail()
+    .withMessage("Should be a valid email address"),
+  body("password")
+    .notEmpty()
+    .withMessage("Password cannot be empty")
+    .isLength({ min: 8 })
+    .withMessage("Password should be atleast 8 characters"),
 ]);
