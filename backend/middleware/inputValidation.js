@@ -1,6 +1,6 @@
 import { body, param, validationResult } from "express-validator";
 import { UserModel } from "../models/UserSchema.js";
-import { ExpressError } from "../error/ExpressError";
+import { ExpressError } from "../error/ExpressError.js";
 
 //create a function that will handle the error
 //This function will accept an array (validateValues) of valeus to be validated.
@@ -20,7 +20,7 @@ const withValidationErrors = (validateValues) => {
   ];
 };
 
-export const register = withValidationErrors([
+export const registerValidation = withValidationErrors([
   body("name")
     .notEmpty()
     .withMessage("Name should not be empty")

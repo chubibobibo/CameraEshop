@@ -25,8 +25,8 @@ app.use("*", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  const status = 404 || err.status;
-  const message = "Something went wrong" || err.message;
+  const status = err.status || 400;
+  const message = err.message || "Something went wrong";
   res.status(status).json({ message: message });
 });
 

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { roles } from "../utils/rolesObject.js";
 
 const { Schema } = mongoose;
 
@@ -21,7 +22,8 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-    required: true,
+    //obtain values of roles object and add returns as array used as enum
+    enum: Object.values(roles),
   },
   purchase: [
     {

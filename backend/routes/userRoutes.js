@@ -2,8 +2,12 @@ import express from "express";
 const router = express.Router();
 
 //controller imports
-import { register } from "../controllers/userControllers.js";
+import { register, login } from "../controllers/userControllers.js";
 
-router.post("/register", register);
+//input validations
+import { registerValidation } from "../middleware/inputValidation.js";
+
+router.post("/register", registerValidation, register);
+router.post("/login", login);
 
 export default router;
