@@ -7,9 +7,6 @@ import jwt from "jsonwebtoken";
 //schema import
 import { UserModel } from "../models/UserSchema.js";
 
-//import roles object
-import { roles } from "../utils/rolesObject.js";
-
 //registering user
 export const register = async (req, res) => {
   //data coming from req.body
@@ -72,8 +69,8 @@ export const login = async (req, res) => {
 };
 
 //Loggin out user
+//create a new cookie that expires immediately
 export const logout = async (req, res) => {
-  //create a new cookie that expires immediately
   //NOTE: logout should be in quotes
   res.cookie("userCookie", "logout", {
     httpOnly: true,
