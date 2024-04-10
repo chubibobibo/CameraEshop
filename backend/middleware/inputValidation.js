@@ -2,6 +2,11 @@ import { body, param, validationResult } from "express-validator";
 import { UserModel } from "../models/UserSchema.js";
 import { ExpressError } from "../error/ExpressError.js";
 
+import mongoose from "mongoose";
+//category object
+import { categories } from "../utils/categoryObject.js";
+import { ProductModel } from "../models/ProductSchema.js";
+
 //create a function that will handle the error
 //This function will accept an array (validateValues) of valeus to be validated.
 //then this function will return the array we passed as an argument and an error response
@@ -61,4 +66,34 @@ export const loginValidation = withValidationErrors([
     .withMessage("Password cannot be empty")
     .isLength({ min: 8 })
     .withMessage("Password should be atleast 8 characters"),
+]);
+
+export const addProductValidation = withValidationErrors([
+  body("prodName")
+    .notEmpty()
+    .withMessage("Product name cannot be empty")
+    .isLength({ max: 30 }),
+  body("prodQty")
+    .notEmpty()
+    .withMessage("Quantity cannot be empty")
+    .isFloat({ min: 0 })
+    .withMessage("Quantity cannot be negative"),
+  body("prodCategory")
+    .notEmpty()
+    .withMessage("Category cannot be empty")
+    .isIn(Object.values(categories))
+    .withMessage("Not a valid category"),
+]);
+
+export const productIdValidation = withValidationErrors([
+  param("id").custom(async (id) => {
+    const validId = await mongoose.Types.ObjectId.isValid(id);
+    if (!validId) {
+      throw new ExpressError("Not a valid id");
+    }
+    const foundProduct = await ProductModel.findById(id);
+    if (!foundProduct) {
+      throw new ExpressError("No product with that id found", 400);
+    }
+  }),
 ]);
