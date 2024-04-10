@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 dotenv.config();
 
 //route imports
-import registerRoute from "./routes/userRoutes.js";
+import usersRoute from "./routes/userRoutes.js";
+import productsRoute from "./routes/productRoutes.js";
 
 const app = express();
 
@@ -12,7 +13,8 @@ const app = express();
 app.use(express.json());
 
 //user routes
-app.use("/api/users/", registerRoute);
+app.use("/api/users/", usersRoute);
+app.use("/api/products/", productsRoute);
 
 // getting-started.js
 main().catch((err) => console.log(err));

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import categories from "../utils/categoryObject.js";
+import { categories } from "../utils/categoryObject.js";
 const { Schema } = mongoose;
 
 const ProductSchema = new Schema({
