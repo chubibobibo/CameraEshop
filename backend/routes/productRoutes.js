@@ -8,6 +8,7 @@ import {
   specificProduct,
   updateProduct,
   deleteProduct,
+  addToCart,
 } from "../controllers/productControllers.js";
 
 //validation imports
@@ -16,7 +17,11 @@ import {
   productIdValidation,
 } from "../middleware/inputValidation.js";
 
+//auth
+import { userAuth } from "../middleware/authentication.js";
+
 router.post("/", addProductValidation, addProduct);
+router.post("/:id", userAuth, addToCart);
 router.patch("/:id", productIdValidation, addProductValidation, updateProduct);
 router.get("/", allProducts);
 router.get("/:id", productIdValidation, specificProduct);
