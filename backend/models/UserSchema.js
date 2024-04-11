@@ -25,12 +25,10 @@ const UserSchema = new Schema({
     //obtain values of roles object and add returns as array used as enum
     enum: Object.values(roles),
   },
-  purchase: [
+  cart: [
     {
-      prodId: {
-        type: Schema.Types.ObjectId,
-        ref: "ProductSchema",
-      },
+      type: Schema.Types.ObjectId,
+      ref: "ProductSchema",
     },
   ],
 });

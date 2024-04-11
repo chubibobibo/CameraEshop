@@ -2,19 +2,25 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 dotenv.config();
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 //route imports
 import usersRoute from "./routes/userRoutes.js";
 import productsRoute from "./routes/productRoutes.js";
+import cartRoute from "./routes/cartRoutes.js";
 
 const app = express();
 
 //json parser
+app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 //user routes
 app.use("/api/users/", usersRoute);
 app.use("/api/products/", productsRoute);
+app.use("/api/cart/", cartRoute);
 
 // getting-started.js
 main().catch((err) => console.log(err));
