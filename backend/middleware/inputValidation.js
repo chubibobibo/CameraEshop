@@ -30,11 +30,13 @@ export const registerValidation = withValidationErrors([
   body("name")
     .notEmpty()
     .withMessage("Name should not be empty")
-    .isLength({ max: 30 }),
+    .isLength({ max: 30 })
+    .withMessage("Name cannot exceed 30 characters"),
   body("lastName")
     .notEmpty()
     .withMessage("Last Name cannot be empty")
-    .isLength({ max: 30 }),
+    .isLength({ max: 30 })
+    .withMessage("Last name cannot exceed 30 characters"),
   body("email")
     .isEmail()
     .withMessage("Must be a valid Email")
@@ -72,7 +74,8 @@ export const addProductValidation = withValidationErrors([
   body("prodName")
     .notEmpty()
     .withMessage("Product name cannot be empty")
-    .isLength({ max: 30 }),
+    .isLength({ max: 30 })
+    .withMessage("Product name cannot exceed 30 characters"),
   body("prodQty")
     .notEmpty()
     .withMessage("Quantity cannot be empty")
@@ -96,4 +99,49 @@ export const productIdValidation = withValidationErrors([
       throw new ExpressError("No product with that id found", 400);
     }
   }),
+]);
+
+//update product validation
+export const updateProductValidation = withValidationErrors([
+  body("prodName")
+    .notEmpty()
+    .withMessage("Product name cannot be empty")
+    .isLength({ max: 30 })
+    .withMessage("Product name cannot exceed 30 characters"),
+  body("prodQty")
+    .notEmpty()
+    .withMessage("Quantity cannot be empty")
+    .isFloat({ min: 0 })
+    .withMessage("Quantity cannot be negative"),
+  body("prodCategory")
+    .notEmpty()
+    .withMessage("Category cannot be empty")
+    .isIn(Object.values(categories))
+    .withMessage("Not a valid category"),
+]);
+
+//update user validation
+export const updateUserValidation = withValidationErrors([
+  body("name")
+    .notEmpty()
+    .withMessage("Name should not be empty")
+    .isLength({ max: 30 })
+    .withMessage("Name cannot exceed 30 characters"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("Last Name cannot be empty")
+    .isLength({ max: 30 })
+    .withMessage("Last name cannot exceed 30 characters"),
+  body("email")
+    .isEmail()
+    .withMessage("Should be a valid email address")
+    .notEmpty()
+    .withMessage("Email cannot be empty")
+    .custom(async (email, { req }) => {
+      //if email exist
+      const foundUser = await UserModel.findOne({ email: email });
+      if (foundUser && foundUser._id.toString() !== req.user.userId) {
+        throw new ExpressError("User not authorized");
+      }
+    }),
 ]);
