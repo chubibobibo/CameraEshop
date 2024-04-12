@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import usersRoute from "./routes/userRoutes.js";
 import productsRoute from "./routes/productRoutes.js";
 import cartRoute from "./routes/cartRoutes.js";
+import adminRoute from "./routes/adminRoutes.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use("/api/users/", usersRoute);
 app.use("/api/products/", productsRoute);
 app.use("/api/cart/", cartRoute);
+app.use("/api/admin/", adminRoute);
 
 // getting-started.js
 main().catch((err) => console.log(err));
