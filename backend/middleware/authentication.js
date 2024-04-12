@@ -10,8 +10,8 @@ export const userAuth = async (req, res, next) => {
   try {
     //obtain logged user data
     req.user = jwt.verify(userCookie, process.env.JWT_SECRET);
-    next();
   } catch (err) {
     console.log(err);
   }
+  next();
 };
