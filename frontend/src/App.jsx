@@ -7,6 +7,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
 
+//action function imports
+import { action as loginAction } from "./pages/Login";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -21,6 +24,7 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+          action: loginAction,
         },
         {
           path: "/register",
