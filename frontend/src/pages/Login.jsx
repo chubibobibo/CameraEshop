@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 //flowbite
-import { Card, Checkbox, Label, TextInput } from "flowbite-react";
+import { Card, Checkbox, Label } from "flowbite-react";
 
 //css
 import styles from "../utils/styles/login.module.css";
@@ -37,7 +37,7 @@ function Login() {
       <section className={styles.cardSection}>
         <Card className='max-w-xl m-10'>
           <Form method='post' className='flex flex-col gap-4'>
-            <div>
+            <article>
               <InputText
                 labelValue={"Email"}
                 labelId={"email"}
@@ -45,7 +45,7 @@ function Login() {
                 placeholder={"Email"}
                 name={"email"}
               />
-            </div>
+            </article>
             {/* password */}
             <InputText
               labelValue={"Password"}
@@ -54,10 +54,10 @@ function Login() {
               name={"password"}
               placeholder={"Password"}
             />
-            <div className='flex items-center gap-2'>
+            <article className='flex items-center gap-2'>
               <Checkbox id='remember' />
               <Label htmlFor='remember'>Remember me</Label>
-            </div>
+            </article>
             {/* button */}
             <ButtonComponent
               type={"submit"}
