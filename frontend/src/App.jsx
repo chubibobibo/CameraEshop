@@ -7,6 +7,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
 
+import Dashboard from "./pages/Dashboard";
+import ProductPage from "./pages/ProductPage";
+
+//action function imports
+import { action as loginAction } from "./pages/Login";
+import { action as registerAction } from "./pages/Register";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -21,10 +28,24 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+          action: loginAction,
         },
         {
           path: "/register",
           element: <Register />,
+          action: registerAction,
+        },
+        {
+          path: "dashboard",
+          element: <Dashboard />,
+          errorElement: <ErrorPage />,
+          children: [
+            // relative to Dasboard
+            {
+              path: "productPage",
+              element: <ProductPage />,
+            },
+          ],
         },
       ],
     },

@@ -15,7 +15,7 @@ function ErrorPage() {
     <main className={styles.errorMain}>
       <section className={styles.errorImage}>
         {error.status === 404 ? (
-          <img src='./src/assets/404.jpg' alt='' />
+          <img src='/src/assets/404.jpg' alt='' />
         ) : (
           <article>Something Went Wrong</article>
         )}

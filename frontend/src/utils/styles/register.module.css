@@ -1,0 +1,12 @@
+.mainContainer {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.cardSection {
+  align-content: center;
+  width: 40rem;
+  margin-top: -10;
+}
