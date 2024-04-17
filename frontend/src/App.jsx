@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 
 import Dashboard from "./pages/Dashboard";
 import ProductPage from "./pages/ProductPage";
+import ProductCategory from "./pages/ProductCategory";
 
 //action function imports
 import { action as loginAction } from "./pages/Login";
@@ -44,6 +45,10 @@ function App() {
           loader: loggedUserLoader,
           children: [
             // relative to Dasboard
+            {
+              index: true,
+              element: <ProductCategory />,
+            },
             {
               path: "productPage",
               element: <ProductPage />,

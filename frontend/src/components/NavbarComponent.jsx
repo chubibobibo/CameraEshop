@@ -13,7 +13,7 @@ function NavbarComponent() {
   //obtaining data from created context
   const context = useContext(DashboardContext);
   const loggedUser = context;
-  console.log(loggedUser);
+  // console.log(loggedUser);
 
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function NavbarComponent() {
   };
 
   return (
-    <Navbar fluid rounded className='bg-black m-2'>
+    <Navbar fluid rounded className='bg-black m-2 sticky top-0'>
       <Navbar.Brand href='/'>
         {/* <img
           src='/favicon.svg'
