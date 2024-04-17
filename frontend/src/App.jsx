@@ -13,6 +13,8 @@ import ProductPage from "./pages/ProductPage";
 //action function imports
 import { action as loginAction } from "./pages/Login";
 import { action as registerAction } from "./pages/Register";
+//loader function imports
+import { loader as loggedUserLoader } from "./pages/Dashboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,6 +41,7 @@ function App() {
           path: "dashboard",
           element: <Dashboard />,
           errorElement: <ErrorPage />,
+          loader: loggedUserLoader,
           children: [
             // relative to Dasboard
             {
