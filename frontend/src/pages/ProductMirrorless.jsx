@@ -1,6 +1,13 @@
+"use client";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+
+//css
+import styles from "../utils/styles/productMirrorless.module.css";
+
+//flowbit imports
+import { Card } from "flowbite-react";
 
 export const loader = async () => {
   try {
@@ -18,19 +25,31 @@ export const loader = async () => {
 
 function ProductMirrorless() {
   const mirrorless = useLoaderData();
-  console.log(mirrorless);
+  // console.log(mirrorless);
 
   return (
-    <main>
+    <main className={styles.mirrorlessMain}>
       {mirrorless.data.foundMirrorless.map((allMirrorless) => {
         return (
-          <>
-            <article>{allMirrorless.prodName}</article>
-            <article>{allMirrorless.prodDescription}</article>
-          </>
+          <section key={allMirrorless._id}>
+            <Card
+              className='max-w-lg m-2'
+              imgSrc='https://images.unsplash.com/photo-1618486073499-242493d8f3a1?q=80&w=3876&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              horizontal
+            >
+              <h5 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+                {allMirrorless.prodName}
+              </h5>
+              <p className='font-normal text-gray-700 dark:text-gray-400 text-sm'>
+                {allMirrorless.prodDescription}
+              </p>
+            </Card>
+          </section>
         );
       })}
     </main>
   );
 }
 export default ProductMirrorless;
+
+//'https://images.unsplash.com/photo-1606986601547-a4d886b671b2?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
