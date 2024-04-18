@@ -81,6 +81,9 @@ export const addProductValidation = withValidationErrors([
     .withMessage("Quantity cannot be empty")
     .isFloat({ min: 0 })
     .withMessage("Quantity cannot be negative"),
+  body("prodDescription")
+    .notEmpty()
+    .withMessage("Product Description cannot be empty"),
   body("prodCategory")
     .notEmpty()
     .withMessage("Category cannot be empty")

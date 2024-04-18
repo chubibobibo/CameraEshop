@@ -24,6 +24,17 @@ export const allProducts = async (req, res) => {
   res.status(200).json({ message: "Products found", foundProducts });
 };
 
+//mirrorless
+export const findMirrorless = async (req, res) => {
+  const foundMirrorless = await ProductModel.find({
+    prodCategory: "Mirrorless",
+  });
+  if (foundMirrorless.length === 0) {
+    throw new ExpressError("No mirrorless cameras found");
+  }
+  res.status(200).json({ foundMirrorless });
+};
+
 //find a specific product
 export const specificProduct = async (req, res) => {
   const { id } = req.params;
