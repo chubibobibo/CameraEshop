@@ -11,6 +11,10 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
+  prodDescription: {
+    type: String,
+    required: true,
+  },
   prodCategory: {
     type: String,
     enum: Object.values(categories),

@@ -10,3 +10,8 @@
 .cardContainer {
   display: flex;
 }
+
+.linkBtn {
+  display: flex;
+  justify-content: center;
+}

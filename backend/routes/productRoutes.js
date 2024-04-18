@@ -4,6 +4,7 @@ const router = express.Router();
 //import controllers
 import {
   allProducts,
+  findMirrorless,
   addProduct,
   specificProduct,
   updateProduct,
@@ -20,10 +21,12 @@ import {
 //auth
 import { userAuth } from "../middleware/authentication.js";
 
+router.get("/", allProducts);
+router.get("/category/mirrorless", findMirrorless);
 router.post("/", addProductValidation, addProduct);
 router.post("/:id", userAuth, addToCart);
 router.patch("/:id", productIdValidation, addProductValidation, updateProduct);
-router.get("/", allProducts);
+
 router.get("/:id", productIdValidation, specificProduct);
 router.delete("/:id", productIdValidation, deleteProduct);
 

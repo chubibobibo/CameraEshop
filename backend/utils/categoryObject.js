@@ -1,5 +1,5 @@
 export const categories = {
-  fullFrame: "Full-Frame",
+  dslr: "Dslr",
   mirrorless: "Mirrorless",
   pointAndShoot: "Point and Shoot",
 };

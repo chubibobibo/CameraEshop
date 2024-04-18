@@ -19,7 +19,7 @@ export const action = async ({ request }) => {
   try {
     await axios.post("api/users/login", data);
     toast.success("User logged in");
-    return redirect("/");
+    return redirect("/dashboard");
   } catch (err) {
     console.log(err);
     toast.error(
