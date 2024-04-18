@@ -16,16 +16,19 @@ function ProductCategory() {
         title={"MIRRORLESS"}
         body={cameraDescription.mirrorless}
         img={cardImg.mirrorlessImg}
+        link={"/dashboard/mirrorless"}
       />
       <CategoryCards
         title={"DSLR"}
         body={cameraDescription.dslr}
         img={cardImg.dslrImg}
+        link={"/dashboard/dslr"}
       />
       <CategoryCards
         title={"POINT AND SHOOT"}
         body={cameraDescription.point}
         img={cardImg.pointImg}
+        link={"/dashboard/point"}
       />
     </main>
   );
