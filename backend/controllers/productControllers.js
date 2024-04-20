@@ -30,9 +30,18 @@ export const findMirrorless = async (req, res) => {
     prodCategory: "Mirrorless",
   });
   if (foundMirrorless.length === 0) {
-    throw new ExpressError("No mirrorless cameras found");
+    throw new ExpressError("No mirrorless cameras found", 400);
   }
   res.status(200).json({ foundMirrorless });
+};
+
+//dslr
+export const findDslr = async (req, res) => {
+  const foundDslr = await ProductModel.find({ prodCategory: "Dslr" });
+  if (foundDslr.length === 0) {
+    throw new ExpressError("No Dslr found", 400);
+  }
+  res.status(200).json({ foundDslr });
 };
 
 //find a specific product

@@ -5,6 +5,7 @@ const router = express.Router();
 import {
   allProducts,
   findMirrorless,
+  findDslr,
   addProduct,
   specificProduct,
   updateProduct,
@@ -23,6 +24,7 @@ import { userAuth } from "../middleware/authentication.js";
 
 router.get("/", allProducts);
 router.get("/category/mirrorless", findMirrorless);
+router.get("/category/dslr", findDslr);
 router.post("/", addProductValidation, addProduct);
 router.post("/:id", userAuth, addToCart);
 router.patch("/:id", productIdValidation, addProductValidation, updateProduct);
