@@ -1,0 +1,20 @@
+.mirrorlessMain {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* .mirrorlessCard {
+  display: flex;
+  width: 45rem;
+  height: 40rem;
+} */
+
+/* .image {
+  aspect-ratio: 1/1;
+  width: 100px;
+  height: 00px;
+  object-fit: cover;
+  image-orientation: from-image;
+} */
