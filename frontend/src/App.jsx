@@ -20,6 +20,7 @@ import { action as registerAction } from "./pages/Register";
 //loader function imports
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
+import { loader as dslrLoader } from "./pages/ProductDslr";
 
 function App() {
   const router = createBrowserRouter([
@@ -65,6 +66,7 @@ function App() {
             {
               path: "dslr",
               element: <ProductDslr />,
+              loader: dslrLoader,
             },
             {
               path: "point",
