@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ProductMirrorless from "./pages/ProductMirrorless";
 import ProductDslr from "./pages/ProductDslr";
 import ProductPoint from "./pages/ProductPoint";
+import SpecificProduct from "./pages/SpecificProduct";
 
 import Dashboard from "./pages/Dashboard";
 import ProductPage from "./pages/ProductPage";
@@ -21,6 +22,8 @@ import { action as registerAction } from "./pages/Register";
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
 import { loader as dslrLoader } from "./pages/ProductDslr";
+import { loader as pointLoader } from "./pages/ProductPoint";
+import { loader as specificLoader } from "./pages/SpecificProduct";
 
 function App() {
   const router = createBrowserRouter([
@@ -71,6 +74,12 @@ function App() {
             {
               path: "point",
               element: <ProductPoint />,
+              loader: pointLoader,
+            },
+            {
+              path: "product/:id",
+              element: <SpecificProduct />,
+              loader: specificLoader,
             },
           ],
         },

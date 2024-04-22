@@ -77,8 +77,8 @@ function NavbarComponent() {
         <Navbar.Link href='#' className='text-slate-300'>
           About
         </Navbar.Link>
-        <Navbar.Link href='#' className='text-slate-300'>
-          Product Category
+        <Navbar.Link href='/dashboard/' className='text-slate-300'>
+          Product Categories
         </Navbar.Link>
         <Navbar.Link href='#' className='text-slate-300'>
           Pricing

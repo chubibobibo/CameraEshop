@@ -24,7 +24,7 @@ export const allProducts = async (req, res) => {
   res.status(200).json({ message: "Products found", foundProducts });
 };
 
-//mirrorless
+//find mirrorless
 export const findMirrorless = async (req, res) => {
   const foundMirrorless = await ProductModel.find({
     prodCategory: "Mirrorless",
@@ -35,13 +35,24 @@ export const findMirrorless = async (req, res) => {
   res.status(200).json({ foundMirrorless });
 };
 
-//dslr
+//find dslr
 export const findDslr = async (req, res) => {
   const foundDslr = await ProductModel.find({ prodCategory: "Dslr" });
   if (foundDslr.length === 0) {
     throw new ExpressError("No Dslr found", 400);
   }
   res.status(200).json({ foundDslr });
+};
+
+//find point and shoot
+export const findPoint = async (req, res) => {
+  const foundPoint = await ProductModel.find({
+    prodCategory: "Point and Shoot",
+  });
+  if (foundPoint.length === 0) {
+    throw new ExpressError("No point and shoot found", 400);
+  }
+  res.status(200).json({ foundPoint });
 };
 
 //find a specific product
@@ -91,7 +102,7 @@ export const addToCart = async (req, res) => {
   }
   const foundUser = await UserModel.findById(req.user.userId);
   foundUser.cart.push(foundItem._id);
-  console.log(foundUser);
+  // console.log(foundUser);
   await foundUser.save(); //save the new instance of foundUser with new cart value
   res.status(200).json({ message: `${foundItem.prodName} was added to cart` });
 };

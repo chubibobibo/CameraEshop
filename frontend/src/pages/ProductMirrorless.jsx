@@ -1,13 +1,16 @@
 "use client";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 
 //css
 import styles from "../utils/styles/productMirrorless.module.css";
 
 //flowbit imports
 import { Card } from "flowbite-react";
+
+//components
+import ButtonComponent from "../components/ButtonComponent";
 
 export const loader = async () => {
   try {
@@ -30,6 +33,7 @@ function ProductMirrorless() {
   return (
     <main className={styles.mirrorlessMain}>
       {mirrorless.data.foundMirrorless.map((allMirrorless) => {
+        // console.log(allMirrorless);
         return (
           <section key={allMirrorless._id}>
             <Card
@@ -43,6 +47,14 @@ function ProductMirrorless() {
               <p className='font-normal text-gray-700 dark:text-gray-400 text-sm'>
                 {allMirrorless.prodDescription}
               </p>
+              <Link to={`/dashboard/product/${allMirrorless._id}`}>
+                <ButtonComponent
+                  type={"button"}
+                  color={"dark"}
+                  size={"sm"}
+                  label={"Show more..."}
+                />
+              </Link>
             </Card>
           </section>
         );

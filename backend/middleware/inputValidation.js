@@ -83,12 +83,19 @@ export const addProductValidation = withValidationErrors([
     .withMessage("Quantity cannot be negative"),
   body("prodDescription")
     .notEmpty()
-    .withMessage("Product Description cannot be empty"),
+    .withMessage("Product Description cannot be empty")
+    .isLength({ max: 445 })
+    .withMessage("Description cannot exceed 40 characters"),
   body("prodCategory")
     .notEmpty()
     .withMessage("Category cannot be empty")
     .isIn(Object.values(categories))
     .withMessage("Not a valid category"),
+  body("price")
+    .notEmpty()
+    .withMessage("Price cannot be empty")
+    .isFloat({ min: 1 })
+    .withMessage("Price should be a number not less than 1"),
 ]);
 
 export const productIdValidation = withValidationErrors([
@@ -116,11 +123,21 @@ export const updateProductValidation = withValidationErrors([
     .withMessage("Quantity cannot be empty")
     .isFloat({ min: 0 })
     .withMessage("Quantity cannot be negative"),
+  body("prodDescription")
+    .notEmpty()
+    .withMessage("Product Description cannot be empty")
+    .isLength({ max: 445 })
+    .withMessage("Description cannot exceed 40 characters"),
   body("prodCategory")
     .notEmpty()
     .withMessage("Category cannot be empty")
     .isIn(Object.values(categories))
     .withMessage("Not a valid category"),
+  body("price")
+    .notEmpty()
+    .withMessage("Price cannot be empty")
+    .isFloat({ min: 1 })
+    .withMessage("Price should be a number not less than 1"),
 ]);
 
 //update user validation

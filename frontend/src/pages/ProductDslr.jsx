@@ -2,6 +2,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useLoaderData } from "react-router-dom";
 
+//css
+import styles from "../utils/styles/productDslr.module.css";
+
 //flowbite imports
 import { Card } from "flowbite-react";
 
@@ -20,7 +23,7 @@ function ProductDslr() {
   console.log(foundDslr);
 
   return (
-    <main>
+    <main className={styles.dslrMain}>
       {foundDslr.data.foundDslr.map((allDslr) => {
         return (
           <section key={allDslr._id}>
