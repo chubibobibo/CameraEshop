@@ -20,6 +20,13 @@ const ProductSchema = new Schema({
     enum: Object.values(categories),
     required: true,
   },
+  price: {
+    type: Number,
+    required: true,
+  },
+  rating: {
+    type: Number,
+  },
 });
 
 export const ProductModel = mongoose.model("ProductModel", ProductSchema);
