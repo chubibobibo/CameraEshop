@@ -6,6 +6,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+//component imports
+import { CartModal } from "../components/CartModal";
+
 //dashboard context
 import { DashboardContext } from "../pages/Dashboard";
 
@@ -68,6 +71,7 @@ function NavbarComponent() {
           <Dropdown.Divider />
           <Dropdown.Item onClick={logoutUser}>Sign out</Dropdown.Item>
         </Dropdown>
+        <CartModal user={loggedUser} />
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
