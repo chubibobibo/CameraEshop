@@ -1,7 +1,7 @@
 import "express-async-errors";
+import { UserModel } from "../models/UserSchema.js";
 import { ProductModel } from "../models/ProductSchema.js";
 import { ExpressError } from "../error/ExpressError.js";
-import { UserModel } from "../models/UserSchema.js";
 
 //create a new product
 export const addProduct = async (req, res) => {
