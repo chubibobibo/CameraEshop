@@ -26,6 +26,7 @@ function Dashboard() {
   //   console.log(userData);
   return (
     <div>
+      {/* pass the user data from loader function to navbar and all the child components (Outlet) */}
       <DashboardContext.Provider value={userData}>
         <Navbar />
         <Outlet />

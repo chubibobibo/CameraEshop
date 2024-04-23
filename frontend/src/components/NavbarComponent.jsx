@@ -57,7 +57,9 @@ function NavbarComponent() {
           }
         >
           <Dropdown.Header>
-            <span className='block text-sm'>{loggedUser.data.user.name}</span>
+            <span className='font-bold capitalize block text-sm'>
+              {loggedUser.data.user.name}
+            </span>
             <span className='block truncate text-sm font-medium'>
               {loggedUser.data.user.email}
             </span>

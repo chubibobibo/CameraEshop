@@ -4,24 +4,24 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaBeer } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 
 export function CartModal(user) {
   const [openModal, setOpenModal] = useState(false);
   //user data as context passed as props from NavbarComponent
   const userData = user.user.data.user;
-  console.log(userData);
-
-  //   export const loader = async() => {
-  //     try {
-  //         const cartProduct = await axios.get(`/api/products/${userData._id}`)
-  //     } catch (err) {
-  //         console.log(err)
-  //     }
-  //   };
+  //   console.log(userData);
 
   return (
     <main>
-      <Button onClick={() => setOpenModal(true)}>My Cart</Button>
+      <Button onClick={() => setOpenModal(true)}>
+        {" "}
+        <div className='text-center'>
+          <FaCartShopping />
+        </div>
+        My Cart
+      </Button>
       <Modal
         show={openModal}
         onClose={() => setOpenModal(false)}
@@ -36,10 +36,11 @@ export function CartModal(user) {
               are updating their terms of service agreements to comply.
             </p>
             {userData.cart.map((newCart) => {
+              console.log(newCart);
               return (
-                <section key={newCart}>
+                <section key={newCart._id}>
                   <p className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>
-                    {newCart}
+                    {newCart.prodName}
                   </p>
                 </section>
               );

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { categories } from "../utils/categoryObject.js";
 const { Schema } = mongoose;
 
-const ProductSchema = new Schema({
+export const ProductSchema = new Schema({
   prodName: {
     type: String,
     required: true,
