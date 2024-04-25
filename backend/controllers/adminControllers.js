@@ -9,7 +9,9 @@ export const loggedUser = async (req, res) => {
   }
   //NOTE: used .populate() to pouplate the cart with the all the data of the products instead of just being an ObjectId.
   //Allows us to display all the details of the products in the cart by refering and querying the ProductModel using the ObjectId saved in the cart property of UserModel.
-  const user = await UserModel.findById(req.user.userId).populate("cart");
+  const user = await UserModel.findById(req.user.userId).populate(
+    "cart.productId"
+  );
   res.status(200).json({ user });
 };
 
