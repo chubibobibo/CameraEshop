@@ -27,8 +27,14 @@ const UserSchema = new Schema({
   },
   cart: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "ProductModel", //should be the model and not the schema
+      productId: {
+        type: Schema.Types.ObjectId,
+        ref: "ProductModel", //should be the model and not the schema
+      },
+      productQty: {
+        type: Number,
+        required: true,
+      },
     },
   ],
 });

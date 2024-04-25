@@ -8,6 +8,10 @@ const CartSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: ProductModel,
   },
+  // cartProductQty: {
+  //   type: Number,
+  //   required: true,
+  // },
 });
 
 export const CartModel = mongoose.model("CartModel", CartSchema);
