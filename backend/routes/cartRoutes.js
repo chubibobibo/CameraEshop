@@ -1,9 +1,11 @@
 import express from "express";
 const router = express.Router();
-
 //import controllers
-import { addToCart } from "../controllers/cartControllers.js";
+import { deleteCart } from "../controllers/cartControllers.js";
 
-router.post("/:id", addToCart);
+//import auth
+import { userAuth } from "../middleware/authentication.js";
+
+router.delete("/:id", userAuth, deleteCart);
 
 export default router;
