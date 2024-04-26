@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Form } from "react-router-dom";
 
 //flowbite
 import { Button, Card } from "flowbite-react";
@@ -24,16 +24,16 @@ export const loader = async ({ params }) => {
 
 function SpecificProduct() {
   //function to add to cart used for the onClick event
-  const addToCart = async (id) => {
-    try {
-      const addedItem = await axios.post(`/api/products/${id}`);
-      console.log(addedItem);
-      toast.success("Item added to cart");
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.response?.data?.message);
-    }
-  };
+  // const addToCart = async (id) => {
+  //   try {
+  //     const addedItem = await axios.post(`/api/products/${id}`);
+  //     console.log(addedItem);
+  //     toast.success("Item added to cart");
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error(err?.response?.data?.message);
+  //   }
+  // };
 
   //product from loader function
   const productData = useLoaderData();
@@ -104,15 +104,17 @@ function SpecificProduct() {
           </span>
 
           {/* Button to add to cart using thge function that calls the addToCartAPi */}
-          <ButtonComponent
-            type={"button"}
-            label={"Add to cart"}
-            size={"sm"}
-            color={"dark"}
-            onClick={() => {
-              addToCart(prodId.toString());
-            }}
-          />
+          <Form method='post' action={`/dashboard/addToCart/${prodId}`}>
+            <ButtonComponent
+              type={"submit"}
+              label={"Add to cart"}
+              size={"sm"}
+              color={"dark"}
+              // onClick={() => {
+              //   addToCart(prodId.toString());
+              // }}
+            />
+          </Form>
         </div>
       </Card>
       {/* <section>{productData.data.foundProduct.prodName}</section>

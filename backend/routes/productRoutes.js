@@ -11,7 +11,6 @@ import {
   specificProduct,
   updateProduct,
   deleteProduct,
-  addToCart,
 } from "../controllers/productControllers.js";
 
 //validation imports
@@ -28,7 +27,6 @@ router.get("/category/mirrorless", findMirrorless);
 router.get("/category/dslr", findDslr);
 router.get("/category/point", findPoint);
 router.post("/", addProductValidation, addProduct);
-router.post("/:id", userAuth, addToCart);
 router.patch("/:id", productIdValidation, addProductValidation, updateProduct);
 
 router.get("/:id", productIdValidation, specificProduct);

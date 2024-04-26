@@ -15,11 +15,13 @@ import Dashboard from "./pages/Dashboard";
 import ProductPage from "./pages/ProductPage";
 import ProductCategory from "./pages/ProductCategory";
 import DeleteCart from "./pages/DeleteCart";
+import AddToCart from "./pages/AddToCart";
 
 //action function imports
 import { action as loginAction } from "./pages/Login";
 import { action as registerAction } from "./pages/Register";
 import { action as deleteCartAction } from "./pages/DeleteCart";
+import { action as addToCartAction } from "./pages/AddToCart";
 //loader function imports
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
@@ -82,6 +84,11 @@ function App() {
               path: "product/:id",
               element: <SpecificProduct />,
               loader: specificLoader,
+            },
+            {
+              path: "addToCart/:id",
+              element: <AddToCart />,
+              action: addToCartAction,
             },
             {
               path: "deleteCart/:id",
