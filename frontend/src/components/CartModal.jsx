@@ -4,6 +4,9 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import axios from "axios";
 import { FaCartShopping } from "react-icons/fa6";
+import { BiSolidXSquare } from "react-icons/bi";
+
+import { Form } from "react-router-dom";
 
 export function CartModal(user) {
   const [openModal, setOpenModal] = useState(false);
@@ -57,13 +60,30 @@ export function CartModal(user) {
 
             {/* map cart array to display all product details */}
             {userData.cart.map((newCart) => {
-              //   console.log(newCart);
+              console.log(newCart);
               return (
-                <section key={newCart._id}>
-                  <article className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>
-                    {newCart.productId.prodName}
-                  </article>
-                  <article>€{newCart.productId.price}</article>
+                <section key={newCart._id} className='flex'>
+                  <Form
+                    method='post'
+                    action={`/dashboard/deleteCart/${newCart._id}`}
+                    className='mr-2 content-center'
+                  >
+                    <button>
+                      <BiSolidXSquare />
+                    </button>
+                  </Form>
+                  <section className='w-20 h-10 mr-3'>
+                    <img
+                      src='https://images.unsplash.com/photo-1578606460787-c1725b634269?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                      alt='thumbnail cart product'
+                    />
+                  </section>
+                  <section>
+                    <article className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>
+                      {newCart.productId.prodName}
+                    </article>
+                    <article>€{newCart.productId.price}</article>
+                  </section>
                 </section>
               );
             })}
