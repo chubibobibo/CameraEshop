@@ -1,6 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
+
+import ButtonComponent from "../components/ButtonComponent";
 
 //css
 import styles from "../utils/styles/productDslr.module.css";
@@ -38,6 +40,15 @@ function ProductDslr() {
               <p className='font-normal text-gray-700 dark:text-gray-400 text-sm'>
                 {allDslr.prodDescription}
               </p>
+              {/* Link to the specific product component */}
+              <Link to={`/dashboard/product/${allDslr._id}`}>
+                <ButtonComponent
+                  type={"button"}
+                  color={"dark"}
+                  size={"sm"}
+                  label={"Show more..."}
+                />
+              </Link>
             </Card>
           </section>
         );

@@ -17,7 +17,7 @@ export const action = async ({ request }) => {
   const formData = await request.formData(); //obtain data from form
   const data = Object.fromEntries(formData); // converts data to useable obj.
   try {
-    await axios.post("api/users/login", data);
+    await axios.post("/api/users/login", data);
     toast.success("User logged in");
     return redirect("/dashboard");
   } catch (err) {
