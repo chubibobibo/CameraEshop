@@ -23,18 +23,6 @@ export const loader = async ({ params }) => {
 };
 
 function SpecificProduct() {
-  //function to add to cart used for the onClick event
-  // const addToCart = async (id) => {
-  //   try {
-  //     const addedItem = await axios.post(`/api/products/${id}`);
-  //     console.log(addedItem);
-  //     toast.success("Item added to cart");
-  //   } catch (err) {
-  //     console.log(err);
-  //     toast.error(err?.response?.data?.message);
-  //   }
-  // };
-
   //product from loader function
   const productData = useLoaderData();
   const prodId = productData.data.foundProduct._id;

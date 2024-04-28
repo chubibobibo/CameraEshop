@@ -1,6 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
+
+import ButtonComponent from "../components/ButtonComponent";
 
 //flowbit imports
 import { Card } from "flowbite-react";
@@ -38,6 +40,15 @@ function ProductPoint() {
               <p className='font-normal text-gray-700 dark:text-gray-400 text-sm'>
                 {allPoint.prodDescription}
               </p>
+              {/* Link to the specificProduct component */}
+              <Link to={`/dashboard/product/${allPoint._id}`}>
+                <ButtonComponent
+                  type={"button"}
+                  color={"dark"}
+                  size={"sm"}
+                  label={"Show more..."}
+                />
+              </Link>
             </Card>
           </section>
         );

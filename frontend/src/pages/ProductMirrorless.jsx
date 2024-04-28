@@ -47,6 +47,7 @@ function ProductMirrorless() {
               <p className='font-normal text-gray-700 dark:text-gray-400 text-sm'>
                 {allMirrorless.prodDescription}
               </p>
+              {/* Link to the Specific Product Component  */}
               <Link to={`/dashboard/product/${allMirrorless._id}`}>
                 <ButtonComponent
                   type={"button"}

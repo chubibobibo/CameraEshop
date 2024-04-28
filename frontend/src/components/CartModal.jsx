@@ -1,8 +1,6 @@
 "use client";
-
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
-import axios from "axios";
 import { FaCartShopping } from "react-icons/fa6";
 import { BiSolidXSquare } from "react-icons/bi";
 
@@ -13,9 +11,10 @@ export function CartModal(user) {
 
   //user data as context passed as props from NavbarComponent
   const userData = user.user.data.user;
-  console.log(userData.cart);
-
+  // console.log(userData.cart);
   //function to obtain total price
+  //map the prices into an array then used reducer method to obtain the total price
+  //NOTE: we have the product data in the productId because we populated that objectId in the adminControllers
   const totalPrice = () => {
     const priceArray = [];
     userData.cart.map((cartProducts) => {

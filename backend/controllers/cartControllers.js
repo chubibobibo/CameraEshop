@@ -1,26 +1,7 @@
 import "express-async-errors";
 import { ExpressError } from "../error/ExpressError.js";
-import { CartModel } from "../models/CartSchema.js";
 import { ProductModel } from "../models/ProductSchema.js";
 import { UserModel } from "../models/UserSchema.js";
-
-// export const addToCart = async (req, res) => {
-//   const { id } = req.params;
-//   const foundItem = await ProductModel.findById(id);
-//   const cartItem = foundItem._id;
-//   // console.log(foundItem);
-//   if (!foundItem) {
-//     throw new ExpressError("No product with Sthat id", 400);
-//   }
-//   const cartProduct = await CartModel.create(cartItem);
-//   console.log(cartProduct);
-//   if (!cartProduct) {
-//     throw new ExpressError("Cannot add item to cart", 400);
-//   }
-//   res
-//     .status(200)
-//     .json({ message: `${foundItem.prodName} added to cart`, cartProduct });
-// };
 
 //adding to cart
 export const addToCart = async (req, res) => {
@@ -35,7 +16,7 @@ export const addToCart = async (req, res) => {
     throw new ExpressError("User is not logged in", 400);
   }
   //finding the logged user to access it's cart
-  const foundUser = await UserModel.findById(req.user.userId);
+  await UserModel.findById(req.user.userId);
 
   //updating the logged user's cart
   const newItem = await UserModel.findByIdAndUpdate(
@@ -45,7 +26,6 @@ export const addToCart = async (req, res) => {
     },
     { new: true }
   );
-
   // await foundUser.save(); //save the new instance of foundUser with new cart value
   res
     .status(200)
