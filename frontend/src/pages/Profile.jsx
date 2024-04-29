@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLoaderData, Form, Link } from "react-router-dom";
+import { useLoaderData, Form, Link, redirect } from "react-router-dom";
 
 //copied styles from register
 import styles from "../utils/styles/updateProfile.module.css";
@@ -23,6 +23,22 @@ export const loader = async () => {
     toast.error(err?.response?.data?.message);
   }
 };
+
+//action to submit updated profile
+export const action = async ({ request }) => {
+  const formData = await request.formData(); //obtain data from form
+  const data = Object.fromEntries(formData); // converts formData to obj.
+  try {
+    const updatedUserData = await axios.patch("/api/admin/updateUser", data);
+
+    toast.success("User profile updated");
+    return redirect("/dashboard");
+  } catch (err) {
+    console.log(err);
+    toast.error(err?.response?.data?.message);
+  }
+};
+
 //JSX
 function Profile() {
   //obtain laoder data
@@ -70,7 +86,7 @@ function Profile() {
               type={"submit"}
               color={"dark"}
               size={"lg"}
-              label={"Submit"}
+              label={"Update Profile"}
             />
           </Form>
         </Card>
