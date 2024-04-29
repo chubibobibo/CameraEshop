@@ -16,7 +16,7 @@ export const register = async (req, res) => {
   //create an admin user
   //needs to use await
   const isAdmin = (await UserModel.countDocuments()) === 0;
-  console.log(isAdmin);
+  // console.log(isAdmin);
   req.body.role = isAdmin ? "admin" : "user";
 
   //hashing password

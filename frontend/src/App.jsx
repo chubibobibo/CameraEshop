@@ -23,6 +23,7 @@ import { action as loginAction } from "./pages/Login";
 import { action as registerAction } from "./pages/Register";
 import { action as deleteCartAction } from "./pages/DeleteCart";
 import { action as addToCartAction } from "./pages/AddToCart";
+import { action as updateProfileAction } from "./pages/Profile";
 //loader function imports
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
@@ -101,6 +102,7 @@ function App() {
               path: "profile/", // Obtain id to load logges user profile
               element: <Profile />,
               loader: updateProfileLoader,
+              action: updateProfileAction,
             },
           ],
         },
