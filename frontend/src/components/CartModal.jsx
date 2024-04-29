@@ -59,7 +59,7 @@ export function CartModal(user) {
 
             {/* map cart array to display all product details */}
             {userData.cart.map((newCart) => {
-              console.log(newCart);
+              // console.log(newCart);
               return (
                 <section key={newCart._id} className='flex'>
                   <Form

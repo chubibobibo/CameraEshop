@@ -1,7 +1,14 @@
 //flowbite
 import { Label, TextInput } from "flowbite-react";
 
-function InputText({ labelId, labelValue, type, placeholder, name }) {
+function InputText({
+  labelId,
+  labelValue,
+  type,
+  placeholder,
+  name,
+  defaultValue,
+}) {
   return (
     <div>
       <div className='mb-2 block'>
@@ -12,6 +19,7 @@ function InputText({ labelId, labelValue, type, placeholder, name }) {
         type={type}
         name={name}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         required
       />
     </div>
