@@ -3,7 +3,7 @@ import styles from "../utils/styles/navbar.module.css";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 //component imports
@@ -20,6 +20,7 @@ function NavbarComponent() {
 
   const navigate = useNavigate();
 
+  //TO BE REFACTORED TO A NEW FILE
   //function to call the logout API
   const logoutUser = async () => {
     try {
@@ -64,10 +65,17 @@ function NavbarComponent() {
               {loggedUser.data.user.email}
             </span>
           </Dropdown.Header>
+          {/* adding a product if role is admin */}
           {loggedUser && loggedUser.data.user.role === "admin" && (
             <Dropdown.Item>Add Products</Dropdown.Item>
           )}
 
+          {/* updating profile if logged in */}
+          {loggedUser && (
+            <Dropdown.Item>
+              <Link to='/dashboard/profile'>Update Profile</Link>
+            </Dropdown.Item>
+          )}
           <Dropdown.Item>View my Cart</Dropdown.Item>
           {/* <Dropdown.Item>Earnings</Dropdown.Item> */}
           <Dropdown.Divider />
