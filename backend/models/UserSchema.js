@@ -37,6 +37,13 @@ const UserSchema = new Schema({
       },
     },
   ],
+  //avatar for updating the user profile
+  avatarUrl: {
+    type: String,
+  },
+  avatarPublicId: {
+    type: String,
+  },
 });
 
 export const UserModel = mongoose.model("UserModel", UserSchema);
