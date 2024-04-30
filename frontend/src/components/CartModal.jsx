@@ -81,7 +81,7 @@ export function CartModal(user) {
                     <article className='text-base leading-relaxed text-gray-500 dark:text-gray-400'>
                       {newCart.productId.prodName}
                     </article>
-                    <article>€{newCart.productId.price}</article>
+                    <article>{euro.format(newCart.productId.price)}</article>
                   </section>
                 </section>
               );
