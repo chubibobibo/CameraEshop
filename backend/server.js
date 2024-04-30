@@ -5,6 +5,9 @@ dotenv.config();
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+//cloudinary
+import cloudinary from "cloudinary";
+
 //route imports
 import usersRoute from "./routes/userRoutes.js";
 import productsRoute from "./routes/productRoutes.js";
@@ -12,6 +15,14 @@ import cartRoute from "./routes/cartRoutes.js";
 import adminRoute from "./routes/adminRoutes.js";
 
 const app = express();
+
+//imports for serving public folder (required in implementing cloudinary)
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "./public")));
 
 //json parser
 app.use(cors());
@@ -29,6 +40,13 @@ main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(process.env.MONGO_URL);
 }
+
+//configure cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 app.use("*", (req, res) => {
   res.status(404).json({ message: "Page not found!" });
