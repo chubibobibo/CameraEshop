@@ -25,11 +25,23 @@ export const loader = async () => {
 };
 
 //action to submit updated profile
+//UPDATE: stop converting data from the form into an object
+
 export const action = async ({ request }) => {
   const formData = await request.formData(); //obtain data from form
-  const data = Object.fromEntries(formData); // converts formData to obj.
+  //   const data = Object.fromEntries(formData); // converts formData to obj.
+
+  //obtain the file (name= "avatar") being sent of the input file. This will create req.file that contains the image
+  const file = formData.get("avatar");
+
+  //file size limiter
+  if (file.size && file.size > 5000000) {
+    toast.error("File cannot exceed 5mb");
+  }
+
+  //UPDATE: change data sent to API to the formData instead of the converted object
   try {
-    const updatedUserData = await axios.patch("/api/admin/updateUser", data);
+    await axios.patch("/api/admin/updateUser", formData);
 
     toast.success("User profile updated");
     return redirect("/dashboard");
@@ -48,7 +60,22 @@ function Profile() {
     <main className={styles.mainContainer}>
       <section className={styles.cardSection}>
         <Card className='max-w-xl m-10'>
-          <Form className='flex flex-col gap-4' method='post'>
+          <Form
+            className='flex flex-col gap-4'
+            method='post'
+            encType='multipart/form-data'
+          >
+            {/* name */}
+            <article>
+              <InputText
+                labelId={"Avatar"}
+                labelValue={"Avatar"}
+                type={"file"}
+                // placeholder={loggedUser.data.user.name}
+                name={"avatar"} //naming the img file being sent
+                // defaultValue={loggedUser.data.user.name}
+              />
+            </article>
             {/* name */}
             <article>
               <InputText

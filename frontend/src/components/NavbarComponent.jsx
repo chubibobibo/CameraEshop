@@ -52,7 +52,7 @@ function NavbarComponent() {
             <Avatar
               className='mr-2'
               alt='User settings'
-              img='https://flowbite.com/docs/images/people/profile-picture-5.jpg'
+              img={loggedUser.data.user.avatarUrl}
               rounded
             />
           }
