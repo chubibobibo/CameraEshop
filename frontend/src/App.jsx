@@ -17,6 +17,7 @@ import ProductCategory from "./pages/ProductCategory";
 import DeleteCart from "./pages/DeleteCart";
 import AddToCart from "./pages/AddToCart";
 import Profile from "./pages/Profile.jsx";
+import AddProduct from "./pages/AddProduct.jsx";
 
 //action function imports
 import { action as loginAction } from "./pages/Login";
@@ -24,6 +25,7 @@ import { action as registerAction } from "./pages/Register";
 import { action as deleteCartAction } from "./pages/DeleteCart";
 import { action as addToCartAction } from "./pages/AddToCart";
 import { action as updateProfileAction } from "./pages/Profile";
+import { action as addProductAction } from "./pages/AddProduct";
 //loader function imports
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
@@ -103,6 +105,11 @@ function App() {
               element: <Profile />,
               loader: updateProfileLoader,
               action: updateProfileAction,
+            },
+            {
+              path: "addProduct",
+              element: <AddProduct />,
+              action: addProductAction,
             },
           ],
         },

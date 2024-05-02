@@ -8,6 +8,7 @@ function InputText({
   placeholder,
   name,
   defaultValue,
+  required,
 }) {
   return (
     <div>
@@ -20,7 +21,7 @@ function InputText({
         name={name}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        required
+        required={required}
       />
     </div>
   );
