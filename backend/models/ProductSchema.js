@@ -27,6 +27,12 @@ export const ProductSchema = new Schema({
   rating: {
     type: Number,
   },
+  avatarUrl: {
+    type: String,
+  },
+  avatarPriductId: {
+    type: String,
+  },
 });
 
 export const ProductModel = mongoose.model("ProductModel", ProductSchema);
