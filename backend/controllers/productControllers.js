@@ -2,11 +2,21 @@ import "express-async-errors";
 import { UserModel } from "../models/UserSchema.js";
 import { ProductModel } from "../models/ProductSchema.js";
 import { ExpressError } from "../error/ExpressError.js";
+import cloudinary from "cloudinary";
+import { promises as fs } from "fs";
 
 //create a new product
 export const addProduct = async (req, res) => {
   if (!req.body) {
     throw new ExpressError("No data recieved", 400);
+  }
+  if (req.file) {
+    const response = await cloudinary.v2.uploader.upload(req.file.path); //uploading the path of the image parsed by multer
+    await fs.unlink(req.file.path); //removes the image in the public folder.
+
+    //access the req.body to insert the response of cloudinary
+    req.body.avatarUrl = response.secure_url;
+    req.body.avatarPublicId = response.public_id;
   }
   const newProduct = await ProductModel.create(req.body);
   if (!newProduct) {
