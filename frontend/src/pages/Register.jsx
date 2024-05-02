@@ -2,7 +2,7 @@ import { Form, Link, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 //flowbite imports
-import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
+import { Card } from "flowbite-react";
 
 //components imports
 import InputText from "../components/InputText";

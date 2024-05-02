@@ -49,12 +49,21 @@ function NavbarComponent() {
           arrowIcon={false}
           inline
           label={
-            <Avatar
-              className='mr-2'
-              alt='User settings'
-              img={loggedUser.data.user.avatarUrl}
-              rounded
-            />
+            !loggedUser.data.user.avatarUrl || !loggedUser ? (
+              <Avatar
+                className='mr-2'
+                alt='User settings'
+                img='/public/testImg.jpg'
+                rounded
+              />
+            ) : (
+              <Avatar
+                className='mr-2'
+                alt='User settings'
+                img={loggedUser.data.user.avatarUrl}
+                rounded
+              />
+            )
           }
         >
           <Dropdown.Header>
@@ -67,7 +76,9 @@ function NavbarComponent() {
           </Dropdown.Header>
           {/* adding a product if role is admin */}
           {loggedUser && loggedUser.data.user.role === "admin" && (
-            <Dropdown.Item>Add Products</Dropdown.Item>
+            <Dropdown.Item>
+              <Link to='/dashboard/addProduct'>Add Products</Link>
+            </Dropdown.Item>
           )}
 
           {/* updating profile if logged in */}

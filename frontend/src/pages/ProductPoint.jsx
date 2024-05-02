@@ -30,8 +30,8 @@ function ProductPoint() {
         return (
           <section key={allPoint._id}>
             <Card
-              className='max-w-lg m-2'
-              imgSrc='https://images.unsplash.com/photo-1618486073499-242493d8f3a1?q=80&w=3876&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              className='max-w-lg m-4'
+              imgSrc={allPoint.avatarUrl}
               horizontal
             >
               <h5 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>

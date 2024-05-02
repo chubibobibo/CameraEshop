@@ -35,7 +35,7 @@ export const action = async ({ request }) => {
   const file = formData.get("avatar");
 
   //file size limiter
-  if (file.size && file.size > 5000000) {
+  if (file && file.size > 5000000) {
     toast.error("File cannot exceed 5mb");
   }
 
@@ -74,6 +74,7 @@ function Profile() {
                 // placeholder={loggedUser.data.user.name}
                 name={"avatar"} //naming the img file being sent
                 // defaultValue={loggedUser.data.user.name}
+                required={"required"}
               />
             </article>
             {/* name */}
@@ -85,6 +86,7 @@ function Profile() {
                 placeholder={loggedUser.data.user.name}
                 name={"name"}
                 defaultValue={loggedUser.data.user.name}
+                required={"required"}
               />
             </article>
             {/* last name */}
@@ -96,6 +98,7 @@ function Profile() {
                 placeholder={"Last Name"}
                 name={"lastName"}
                 defaultValue={loggedUser.data.user.lastName}
+                required={"required"}
               />
             </article>
             {/* email */}
@@ -107,6 +110,7 @@ function Profile() {
                 placeholder={"Email"}
                 name={"email"}
                 defaultValue={loggedUser.data.user.email}
+                required={"required"}
               />
             </article>
             <ButtonComponent
