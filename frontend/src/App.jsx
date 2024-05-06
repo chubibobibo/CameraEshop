@@ -18,6 +18,7 @@ import DeleteCart from "./pages/DeleteCart";
 import AddToCart from "./pages/AddToCart";
 import Profile from "./pages/Profile.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
+import DeleteProduct from "./pages/DeleteProduct.jsx";
 
 //action function imports
 import { action as loginAction } from "./pages/Login";
@@ -26,6 +27,7 @@ import { action as deleteCartAction } from "./pages/DeleteCart";
 import { action as addToCartAction } from "./pages/AddToCart";
 import { action as updateProfileAction } from "./pages/Profile";
 import { action as addProductAction } from "./pages/AddProduct";
+import { action as deleteProduct } from "./pages/DeleteProduct";
 //loader function imports
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
@@ -110,6 +112,11 @@ function App() {
               path: "addProduct",
               element: <AddProduct />,
               action: addProductAction,
+            },
+            {
+              path: "deleteProduct/:id",
+              element: <DeleteProduct />,
+              action: deleteProduct,
             },
           ],
         },
