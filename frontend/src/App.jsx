@@ -19,6 +19,7 @@ import AddToCart from "./pages/AddToCart";
 import Profile from "./pages/Profile.jsx";
 import AddProduct from "./pages/AddProduct.jsx";
 import DeleteProduct from "./pages/DeleteProduct.jsx";
+import UpdateProduct from "./pages/UpdateProduct.jsx";
 
 //action function imports
 import { action as loginAction } from "./pages/Login";
@@ -28,6 +29,7 @@ import { action as addToCartAction } from "./pages/AddToCart";
 import { action as updateProfileAction } from "./pages/Profile";
 import { action as addProductAction } from "./pages/AddProduct";
 import { action as deleteProduct } from "./pages/DeleteProduct";
+import { action as updateProduct } from "./pages/UpdateProduct";
 //loader function imports
 import { loader as loggedUserLoader } from "./pages/Dashboard";
 import { loader as mirrorlessLoader } from "./pages/ProductMirrorless";
@@ -35,6 +37,7 @@ import { loader as dslrLoader } from "./pages/ProductDslr";
 import { loader as pointLoader } from "./pages/ProductPoint";
 import { loader as specificLoader } from "./pages/SpecificProduct";
 import { loader as updateProfileLoader } from "./pages/Profile";
+import { loader as updateProductLoader } from "./pages/UpdateProduct";
 
 function App() {
   const router = createBrowserRouter([
@@ -117,6 +120,12 @@ function App() {
               path: "deleteProduct/:id",
               element: <DeleteProduct />,
               action: deleteProduct,
+            },
+            {
+              path: "updateProduct/:id",
+              element: <UpdateProduct />,
+              action: updateProduct,
+              loader: updateProductLoader,
             },
           ],
         },

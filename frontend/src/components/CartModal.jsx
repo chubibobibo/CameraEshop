@@ -18,6 +18,8 @@ export function CartModal(user) {
   const totalPrice = () => {
     const priceArray = [];
     userData.cart.map((cartProducts) => {
+      //check productId if still existing, when admin removes the item.
+      //this will fix the error when admin removes an item which is currently in the cart of the user.
       if (cartProducts.productId !== null) {
         priceArray.push(cartProducts.productId.price);
       }
@@ -35,6 +37,7 @@ export function CartModal(user) {
     style: "currency",
     currency: "EUR",
   });
+
   // jsx
   return (
     <main>
@@ -61,9 +64,8 @@ export function CartModal(user) {
 
             {/* map cart array to display all product details */}
             {userData.cart.map((newCart) => {
-              console.log(newCart.productId);
-
               return (
+                // Dynamically render the products if still existing in the database
                 newCart.productId !== null && (
                   <section key={newCart._id} className='flex'>
                     <Form

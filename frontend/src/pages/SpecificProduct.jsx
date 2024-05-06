@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLoaderData, Form } from "react-router-dom";
+import { useLoaderData, Form, Link } from "react-router-dom";
 import { useContext } from "react";
 
 //context
@@ -35,7 +35,7 @@ function SpecificProduct() {
   //obtain context from parent(dashbaord page)
   const context = useContext(DashboardContext);
   const userData = context;
-  // console.log(userData);
+  console.log(userData);
 
   return (
     <main className={styles.mainCard}>
@@ -113,15 +113,33 @@ function SpecificProduct() {
             />
           </Form>
           {userData.data.user.role === "admin" && (
-            <Form method='post' action={`/dashboard/deleteProduct/${prodId}`}>
-              <ButtonComponent
-                type={"Submit"}
-                label={"Delete"}
-                size={"sm"}
-                color={"dark"}
-              />
-            </Form>
+            <>
+              <Form method='post' action={`/dashboard/deleteProduct/${prodId}`}>
+                <ButtonComponent
+                  type={"Submit"}
+                  label={"Delete"}
+                  size={"sm"}
+                  color={"dark"}
+                />
+              </Form>
+              <Link to={`/dashboard/updateProduct/${prodId}`}>
+                <ButtonComponent
+                  type={"Submit"}
+                  label={"Update"}
+                  size={"sm"}
+                  color={"dark"}
+                />
+              </Link>
+            </>
           )}
+          <Link to={-1}>
+            <ButtonComponent
+              type={"button"}
+              label={"Back"}
+              size={"sm"}
+              color={"dark"}
+            />
+          </Link>
         </div>
       </Card>
       {/* <section>{productData.data.foundProduct.prodName}</section>
