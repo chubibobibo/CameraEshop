@@ -35,7 +35,7 @@ function SpecificProduct() {
   //obtain context from parent(dashbaord page)
   const context = useContext(DashboardContext);
   const userData = context;
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <main className={styles.mainCard}>
