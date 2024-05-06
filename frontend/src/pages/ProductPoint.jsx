@@ -26,7 +26,7 @@ function ProductPoint() {
   console.log(point);
   return (
     <main className={styles.pointMain}>
-      {point.data.foundPoint.map((allPoint) => {
+      {point?.data?.foundPoint?.map((allPoint) => {
         return (
           <section key={allPoint._id}>
             <Card
@@ -61,6 +61,15 @@ function ProductPoint() {
           </section>
         );
       })}
+      {/* Displays no products found relative if loader function returns results */}
+      <section className='flex-col'>
+        <h1 className='text-white text-4xl'>No Products Found</h1>
+        <br />
+
+        <Link to='/dashboard' className='flex items-center text-white text-lg'>
+          Click here to go back to categories...
+        </Link>
+      </section>
     </main>
   );
 }

@@ -23,7 +23,7 @@ export const addProduct = async (req, res) => {
   //delete and replace the image if image file and user has avatarPublicId.
   const user = await UserModel.findById(req.user.userId);
   if (req.file && user.avatarPublicId) {
-    await cloudinary.upload.destroy(user.avatarPublicId);
+    await cloudinary.uploader.destroy(user.avatarPublicId);
   }
   const newProduct = await ProductModel.create(req.body);
   if (!newProduct) {
@@ -101,9 +101,9 @@ export const updateProduct = async (req, res) => {
 
   //delete if avatarPublicId exists
   //delete images in cloudinary if image exist.
-  const foundUser = await UserModel.findById(req.user.userId);
-  if (req.file && foundUser.avatarPublicId) {
-    await cloudinary.upload.destroy(foundUser.avatarPublicId);
+  const foundProduct = await ProductModel.findById(id);
+  if (req.file && foundProduct.avatarPublicId) {
+    await cloudinary.uploader.destroy(foundProduct.avatarPublicId);
   }
 
   const updatedProduct = await ProductModel.findByIdAndUpdate(id, req.body, {

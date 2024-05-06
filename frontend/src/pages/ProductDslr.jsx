@@ -22,11 +22,11 @@ export const loader = async () => {
 };
 function ProductDslr() {
   const foundDslr = useLoaderData();
-  console.log(foundDslr);
+  // console.log(foundDslr);
 
   return (
     <main className={styles.dslrMain}>
-      {foundDslr.data.foundDslr.map((allDslr) => {
+      {foundDslr?.data?.foundDslr?.map((allDslr) => {
         return (
           <section key={allDslr._id}>
             <Card
@@ -61,6 +61,15 @@ function ProductDslr() {
           </section>
         );
       })}
+      {/* Displays no products found relative if loader function returns results */}
+      <section className='flex-col'>
+        <h1 className='text-white text-4xl'>No Products Found</h1>
+        <br />
+
+        <Link to='/dashboard' className='flex items-center text-white text-lg'>
+          Click here to go back to categories...
+        </Link>
+      </section>
     </main>
   );
 }

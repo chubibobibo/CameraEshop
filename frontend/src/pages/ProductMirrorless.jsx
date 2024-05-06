@@ -32,7 +32,7 @@ function ProductMirrorless() {
 
   return (
     <main className={styles.mirrorlessMain}>
-      {mirrorless.data.foundMirrorless.map((allMirrorless) => {
+      {mirrorless?.data?.foundMirrorless?.map((allMirrorless) => {
         // console.log(allMirrorless);
         return (
           <section key={allMirrorless._id}>
@@ -68,6 +68,15 @@ function ProductMirrorless() {
           </section>
         );
       })}
+      {/* Displays no products found relative if loader function returns results */}
+      <section className='flex-col'>
+        <h1 className='text-white text-4xl'>No Products Found</h1>
+        <br />
+
+        <Link to='/dashboard' className='flex items-center text-white text-lg'>
+          Click here to go back to categories...
+        </Link>
+      </section>
     </main>
   );
 }

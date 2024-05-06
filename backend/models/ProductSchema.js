@@ -30,7 +30,7 @@ export const ProductSchema = new Schema({
   avatarUrl: {
     type: String,
   },
-  avatarPriductId: {
+  avatarProductId: {
     type: String,
   },
 });

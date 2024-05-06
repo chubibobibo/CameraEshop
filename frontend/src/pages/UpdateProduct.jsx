@@ -1,5 +1,11 @@
 import { Card, Label, Textarea, Select } from "flowbite-react";
-import { Form, Link, redirect, useLoaderData } from "react-router-dom";
+import {
+  Form,
+  Link,
+  redirect,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -12,13 +18,13 @@ import styles from "../utils/styles/addProduct.module.css";
 
 //action function to submit form details (including image file)
 //modified action function to not convert data to object. Multer will parse the data
-
+//request needed to obtain form data, params needed to call API to patch data.
 export const action = async ({ request, params }) => {
   const formData = await request.formData();
   try {
     await axios.patch(`/api/products/${params.id}`, formData);
     toast.success("Product successfuly updated");
-    return redirect("/dashboard");
+    return redirect("..");
   } catch (err) {
     // console.log(err);
     toast.error(
@@ -29,6 +35,7 @@ export const action = async ({ request, params }) => {
   }
 };
 
+//loader function to obtain productData
 export const loader = async ({ params }) => {
   try {
     const productData = await axios.get(`/api/products/${params.id}`);
@@ -42,6 +49,9 @@ export const loader = async ({ params }) => {
 function UpdateProduct() {
   //categories for the select option input
   const categories = ["Dslr", "Mirrorless", "Point and Shoot"];
+
+  //passing navigate(-1) as an onClick handler to navigate to previous page after updateing a product.
+  const navigate = useNavigate();
 
   //obtaining data from the loader function
   const data = useLoaderData();
@@ -147,6 +157,10 @@ function UpdateProduct() {
               color={"dark"}
               size={"lg"}
               label={"Submit"}
+              //navigating to a previous page after updating a product.
+              onClick={() => {
+                navigate(-1);
+              }}
             />
           </Form>
           <Link to={`/dashboard/product/${productData._id}`}>
