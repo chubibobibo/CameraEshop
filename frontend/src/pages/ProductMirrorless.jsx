@@ -56,6 +56,14 @@ function ProductMirrorless() {
                   label={"Show more..."}
                 />
               </Link>
+              <Link to={`/dashboard`}>
+                <ButtonComponent
+                  type={"button"}
+                  color={"dark"}
+                  size={"sm"}
+                  label={"Back to Categories"}
+                />
+              </Link>
             </Card>
           </section>
         );
