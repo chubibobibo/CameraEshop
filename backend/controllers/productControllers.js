@@ -18,6 +18,13 @@ export const addProduct = async (req, res) => {
     req.body.avatarUrl = response.secure_url;
     req.body.avatarPublicId = response.public_id;
   }
+
+  //find logged user and check if user has a avatar productId
+  //delete and replace the image if image file and user has avatarPublicId.
+  const user = await UserModel.findById(req.user.userId);
+  if (req.file && user.avatarPublicId) {
+    await cloudinary.upload.destroy(user.avatarPublicId);
+  }
   const newProduct = await ProductModel.create(req.body);
   if (!newProduct) {
     throw new ExpressError("Cannot create a new product");
@@ -84,6 +91,21 @@ export const updateProduct = async (req, res) => {
   if (!req.body) {
     throw new ExpressError("No data recieved", 400);
   }
+  //check for image file
+  if (req.file) {
+    const response = await cloudinary.v2.uploader.upload(req.file.path);
+    await fs.unlink(req.file.path); // delete from public folder.
+    req.body.avatarUrl = response.secure_url;
+    req.body.avatarPublicId = response.public_id;
+  }
+
+  //delete if avatarPublicId exists
+  //delete images in cloudinary if image exist.
+  const foundUser = await UserModel.findById(req.user.userId);
+  if (req.file && foundUser.avatarPublicId) {
+    await cloudinary.upload.destroy(foundUser.avatarPublicId);
+  }
+
   const updatedProduct = await ProductModel.findByIdAndUpdate(id, req.body, {
     new: true,
   });

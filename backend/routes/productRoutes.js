@@ -24,12 +24,20 @@ import upload from "../middleware/multerMiddleware.js";
 
 //auth
 import { userAuth } from "../middleware/authentication.js";
+import { isAdmin } from "../middleware/authentication.js";
 
 router.get("/", allProducts);
 router.get("/category/mirrorless", findMirrorless);
 router.get("/category/dslr", findDslr);
 router.get("/category/point", findPoint);
-router.post("/", upload.single("avatar"), addProductValidation, addProduct);
+router.post(
+  "/",
+  userAuth,
+  isAdmin("admin"),
+  upload.single("avatar"),
+  addProductValidation,
+  addProduct
+);
 router.patch("/:id", productIdValidation, addProductValidation, updateProduct);
 
 router.get("/:id", productIdValidation, specificProduct);
