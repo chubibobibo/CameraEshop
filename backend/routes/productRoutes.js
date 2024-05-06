@@ -38,9 +38,23 @@ router.post(
   addProductValidation,
   addProduct
 );
-router.patch("/:id", productIdValidation, addProductValidation, updateProduct);
+router.patch(
+  "/:id",
+  userAuth,
+  isAdmin("admin"),
+  upload.single("avatar"),
+  productIdValidation,
+  addProductValidation,
+  updateProduct
+);
 
 router.get("/:id", productIdValidation, specificProduct);
-router.delete("/:id", productIdValidation, deleteProduct);
+router.delete(
+  "/:id",
+  userAuth,
+  isAdmin("admin"),
+  productIdValidation,
+  deleteProduct
+);
 
 export default router;

@@ -17,11 +17,14 @@ export const userAuth = async (req, res, next) => {
 };
 
 //isAdmin
-export const isAdmin = (...role) => {
+export const isAdmin = (...roles) => {
   return (req, res, next) => {
-    const adminUser = role.includes(req.user.role);
-    if (!adminUser) {
-      throw new ExpressError("not an admin");
+    // const adminUser = roles.includes(req.user.role);
+    // if (!adminUser) {
+    //   throw new ExpressError("not an admin");
+    // }
+    if (!roles.includes(req.user.userRole)) {
+      throw new ExpressError("User is not an admin", 400);
     }
     next();
   };
