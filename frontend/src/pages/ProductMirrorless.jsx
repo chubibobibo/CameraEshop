@@ -11,7 +11,8 @@ import { Card } from "flowbite-react";
 
 //components
 import ButtonComponent from "../components/ButtonComponent";
-
+//porvide id to toast to avoid repetition
+const customId = "custom-id-yes";
 export const loader = async () => {
   try {
     const foundMirrorless = await axios.get(
@@ -20,9 +21,9 @@ export const loader = async () => {
     // console.log(foundMirrorless);
     return foundMirrorless;
   } catch (err) {
-    console.log(err);
-    toast.error(err?.response?.data?.message);
-    return err;
+    // console.log(err);
+    toast.error(err.response.data.message, { toastId: customId }); //provide the id as 2nd argument
+    return null;
   }
 };
 
@@ -68,15 +69,16 @@ function ProductMirrorless() {
           </section>
         );
       })}
+
       {/* Displays no products found relative if loader function returns results */}
-      <section className='flex-col'>
+      {/* <section className='flex-col'>
         <h1 className='text-white text-4xl'>No Products Found</h1>
         <br />
 
         <Link to='/dashboard' className='flex items-center text-white text-lg'>
           Click here to go back to categories...
         </Link>
-      </section>
+      </section> */}
     </main>
   );
 }

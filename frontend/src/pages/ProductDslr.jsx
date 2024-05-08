@@ -62,14 +62,14 @@ function ProductDslr() {
         );
       })}
       {/* Displays no products found relative if loader function returns results */}
-      <section className='flex-col'>
+      {/* <section className='flex-col'>
         <h1 className='text-white text-4xl'>No Products Found</h1>
         <br />
 
         <Link to='/dashboard' className='flex items-center text-white text-lg'>
           Click here to go back to categories...
         </Link>
-      </section>
+      </section> */}
     </main>
   );
 }

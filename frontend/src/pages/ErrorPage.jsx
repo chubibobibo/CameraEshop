@@ -10,14 +10,14 @@ import { Button } from "flowbite-react";
 function ErrorPage() {
   //error handler
   const error = useRouteError();
-  //   console.log(error);
+  console.log(error);
   return (
     <main className={styles.errorMain}>
       <section className={styles.errorImage}>
         {error.status === 404 ? (
           <img src='/src/assets/404.jpg' alt='' />
         ) : (
-          <article>Something Went Wrong</article>
+          <article className='text-white'>{error.message}</article>
         )}
       </section>
       <article className={styles.errorBtn}>
