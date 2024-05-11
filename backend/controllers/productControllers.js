@@ -4,6 +4,7 @@ import { ProductModel } from "../models/ProductSchema.js";
 import { ExpressError } from "../error/ExpressError.js";
 import cloudinary from "cloudinary";
 import { promises as fs } from "fs";
+import { ifError } from "assert";
 
 //create a new product
 export const addProduct = async (req, res) => {
@@ -54,7 +55,26 @@ export const findMirrorless = async (req, res) => {
 
 //find dslr
 export const findDslr = async (req, res) => {
-  const foundDslr = await ProductModel.find({ prodCategory: "Dslr" });
+  //obtaining query string
+  const { search } = req.query;
+  //object to be used as default in find query
+  const queryObj = {
+    prodCategory: "Dslr",
+  };
+
+  //check whether a query string exist
+  //creates a key value pair in our queryObj based off the result in comparing the query string received to the prodName in database.
+  if (search) {
+    queryObj.$or = [
+      {
+        //compare the query string from forms to the prodName in database
+        prodName: { $regex: search, options: "i" },
+      },
+    ];
+  }
+
+  const foundDslr = await ProductModel.find(queryObj); //use the object that will contain either the query from forms or the default query
+
   if (foundDslr.length === 0) {
     throw new ExpressError("No Dslr found", 400);
   }

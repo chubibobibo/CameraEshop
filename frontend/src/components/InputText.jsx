@@ -9,6 +9,7 @@ function InputText({
   name,
   defaultValue,
   required,
+  handleChange,
 }) {
   return (
     <div>
@@ -21,6 +22,7 @@ function InputText({
         name={name}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        onChange={handleChange}
         required={required}
       />
     </div>
