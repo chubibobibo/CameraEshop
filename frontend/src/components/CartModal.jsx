@@ -19,7 +19,7 @@ export function CartModal(user) {
     const priceArray = [];
     userData.cart.map((cartProducts) => {
       //check productId if still existing, when admin removes the item.
-      //this will fix the error when admin removes an item which is currently in the cart of the user.
+      //this will fix the error when admin removes an item in the database which is currently in the cart of the user.
       if (cartProducts.productId !== null) {
         priceArray.push(cartProducts.productId.price);
       }

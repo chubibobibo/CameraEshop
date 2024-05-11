@@ -112,6 +112,7 @@ function SpecificProduct() {
               // }}
             />
           </Form>
+          {/* deleting specific product */}
           {userData.data.user.role === "admin" && (
             <>
               <Form method='post' action={`/dashboard/deleteProduct/${prodId}`}>
@@ -142,10 +143,6 @@ function SpecificProduct() {
           </Link>
         </div>
       </Card>
-      {/* <section>{productData.data.foundProduct.prodName}</section>
-      <section>{productData.data.foundProduct.prodDescription}</section>
-      <section>{productData.data.foundProduct.prodQty}</section>
-      <section>{productData.data.foundProduct.prodCategory}</section> */}
     </main>
   );
 }

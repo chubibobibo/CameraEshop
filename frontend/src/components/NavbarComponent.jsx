@@ -33,7 +33,7 @@ function NavbarComponent() {
   };
 
   return (
-    <Navbar fluid rounded className='bg-black m-2 sticky top-0'>
+    <Navbar fluid rounded className='bg-black m-1 '>
       <Navbar.Brand href='/'>
         {/* <img
           src='/favicon.svg'
