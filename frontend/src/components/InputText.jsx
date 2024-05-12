@@ -22,7 +22,7 @@ function InputText({
         name={name}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        onChange={handleChange}
+        // onChange={(e)=>handleChange(e)}
         required={required}
       />
     </div>
