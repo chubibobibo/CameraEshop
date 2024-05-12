@@ -56,6 +56,7 @@ export const findMirrorless = async (req, res) => {
 //find dslr
 export const findDslr = async (req, res) => {
   //obtaining query string
+  // console.log(req.query);
   const { search } = req.query;
   //object to be used as default in find query
   const queryObj = {
@@ -68,11 +69,10 @@ export const findDslr = async (req, res) => {
     queryObj.$or = [
       {
         //compare the query string from forms to the prodName in database
-        prodName: { $regex: search, options: "i" },
+        prodName: { $regex: search, $options: "i" },
       },
     ];
   }
-
   const foundDslr = await ProductModel.find(queryObj); //use the object that will contain either the query from forms or the default query
 
   if (foundDslr.length === 0) {
