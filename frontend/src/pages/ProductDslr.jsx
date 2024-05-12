@@ -12,13 +12,23 @@ import styles from "../utils/styles/productDslr.module.css";
 import { Card } from "flowbite-react";
 
 //loader function obtain dslr's
-export const loader = async () => {
+export const loader = async ({ request }) => {
+  // console.log(request);
   try {
-    const foundDslr = await axios.get("/api/products/category/dslr");
+    //modifying the loader function to create a new url that contains the URL with the search query(request.url)
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+    // console.log(searchQueryParams);
+    const foundDslr = await axios.get("/api/products/category/dslr", {
+      params,
+    });
+    // console.log(foundDslr);
     return foundDslr;
   } catch (err) {
     console.log(err);
     toast.error(err?.response?.data?.message);
+    return null;
   }
 };
 function ProductDslr() {

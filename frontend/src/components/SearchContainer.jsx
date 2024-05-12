@@ -1,45 +1,44 @@
 import { useState } from "react";
+import { Form, Link } from "react-router-dom";
 
 //componment imports
 import InputText from "./InputText";
 import ButtonComponent from "./ButtonComponent";
 
 function SearchContainer() {
-  //state to store search product data
-  const [searchProduct, setSearchProduct] = useState({
-    product: "",
-    price: "",
-  });
+  //NOTE: modify the loader function in the ProductDslr.jsx to obtain the data from the form using Object.fromEntries() and create a new URL with the query strings based on the data on the query forms.
 
-  //handle data from search input
-  const handleChange = (e) => {
-    setSearchProduct((newSearch) => {
-      return { ...newSearch, [e.target.name]: e.target.value };
-    });
-  };
-
-  console.log(searchProduct);
   return (
     //form will default to GET method
     //value of search input will be sent as query strings
     <main>
-      <form>
-        <InputText
-          labelId={"searchProduct"}
-          labelValue={"Search Product"}
-          type={"search"}
-          placeholder={"Search Product"}
-          name={"search"}
-          handleChange={handleChange}
-        />
-        <ButtonComponent
-          type={"submit"}
-          color={"dark"}
-          size={"sm"}
-          label={"Search"}
-        />
-      </form>
-      <p className='text-white'>{searchProduct.product}</p>
+      <Form>
+        <section className='flex mb-2'>
+          <InputText
+            labelId={"searchProduct"}
+            labelValue={"Search Product"}
+            type={"search"}
+            placeholder={"Search Product"}
+            name={"search"}
+          />
+        </section>
+        <section className='flex gap-1'>
+          <ButtonComponent
+            type={"submit"}
+            color={"dark"}
+            size={"sm"}
+            label={"Search"}
+          />
+          <Link to='/dashboard/dslr'>
+            <ButtonComponent
+              type={"submit"}
+              color={"dark"}
+              size={"sm"}
+              label={"Reset Search"}
+            />
+          </Link>
+        </section>
+      </Form>
     </main>
   );
 }
