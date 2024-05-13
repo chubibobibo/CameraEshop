@@ -29,3 +29,10 @@ export const isAdmin = (...roles) => {
     next();
   };
 };
+
+export const isTestUser = (req, res, next) => {
+  if (req.user.userId === "661274424fda4ac1fd6a0fe7") {
+    throw new ExpressError("Login to add items to cart", 400);
+  }
+  next();
+};

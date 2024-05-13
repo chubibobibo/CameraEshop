@@ -5,9 +5,9 @@ const router = express.Router();
 import { addToCart, deleteCart } from "../controllers/cartControllers.js";
 
 //import auth
-import { userAuth } from "../middleware/authentication.js";
+import { userAuth, isTestUser } from "../middleware/authentication.js";
 
-router.post("/:id", userAuth, addToCart);
-router.delete("/:id", userAuth, deleteCart);
+router.post("/:id", userAuth, isTestUser, addToCart);
+router.delete("/:id", userAuth, isTestUser, deleteCart);
 
 export default router;

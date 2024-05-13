@@ -44,9 +44,21 @@ export const allProducts = async (req, res) => {
 
 //find mirrorless
 export const findMirrorless = async (req, res) => {
-  const foundMirrorless = await ProductModel.find({
+  const { search } = req.query;
+  //object as default query
+  const queryObj = {
     prodCategory: "Mirrorless",
-  });
+  };
+
+  if (search) {
+    queryObj.$or = [
+      {
+        prodName: { $regex: search, $options: "i" },
+      },
+    ];
+  }
+
+  const foundMirrorless = await ProductModel.find(queryObj);
   if (foundMirrorless.length === 0) {
     throw new ExpressError("No mirrorless cameras found", 400);
   }
@@ -83,9 +95,23 @@ export const findDslr = async (req, res) => {
 
 //find point and shoot
 export const findPoint = async (req, res) => {
-  const foundPoint = await ProductModel.find({
+  //obtain data from req.query
+  //create an object as default query to find the products in the database.
+  const { search } = req.query;
+  const queryObj = {
     prodCategory: "Point and Shoot",
-  });
+  };
+
+  //if query exists create a new property (prodName) that will have a value based on the search query which will be used in the .find() method in the database.
+  if (search) {
+    queryObj.$or = [
+      {
+        prodName: { $regex: search, $options: "i" },
+      },
+    ];
+  }
+  const foundPoint = await ProductModel.find(queryObj);
+
   if (foundPoint.length === 0) {
     throw new ExpressError("No point and shoot found", 400);
   }
