@@ -13,6 +13,7 @@ export const action = async ({ params }) => {
   } catch (err) {
     console.log(err);
     toast.error(err?.response?.data?.message);
+    return redirect(`/dashboard/product/${params.id}`);
   }
 };
 function AddToCart() {

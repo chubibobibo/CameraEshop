@@ -16,6 +16,7 @@ export const loader = async ({ request }) => {
   // console.log(request);
   try {
     //modifying the loader function to create a new url that contains the URL with the search query(request.url)
+    //searchParams returns an iterator of all key value-pair of new URL object.
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);

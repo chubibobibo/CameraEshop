@@ -38,6 +38,7 @@ import { loader as pointLoader } from "./pages/ProductPoint";
 import { loader as specificLoader } from "./pages/SpecificProduct";
 import { loader as updateProfileLoader } from "./pages/Profile";
 import { loader as updateProductLoader } from "./pages/UpdateProduct";
+// import { loader as indexLoader } from "./pages/Index.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -70,6 +71,7 @@ function App() {
             {
               index: true,
               element: <ProductCategory />,
+              // loader: indexLoader,
             },
             {
               path: "productPage",

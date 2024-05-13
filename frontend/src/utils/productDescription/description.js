@@ -9,10 +9,7 @@ export const cameraDescription = {
 };
 
 export const cardImg = {
-  mirrorlessImg:
-    "https://images.unsplash.com/photo-1580089471304-680d1604c33d?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  dslrImg:
-    "https://images.unsplash.com/photo-1548502499-ef49e8cf98d4?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  pointImg:
-    "https://images.unsplash.com/photo-1522874160750-0faa95a48073?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  mirrorlessImg: "/src/assets/mirrorless.jpg",
+  dslrImg: "/src/assets/dslr.jpg",
+  pointImg: "/src/assets/point.jpg",
 };

@@ -1,4 +1,4 @@
-import { Link, redirect, Form } from "react-router-dom";
+import { Link, redirect, Form, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -32,6 +32,23 @@ export const action = async ({ request }) => {
 };
 
 function Login() {
+  //object used as login
+  const testUser = {
+    email: "test@gmail.com",
+    password: "testtest",
+  };
+
+  const navigate = useNavigate();
+  //function to handle login onClick
+  const handleLogin = async (testUser) => {
+    try {
+      await axios.post("/api/users/login", testUser);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <main className={styles.mainContainer}>
       <section className={styles.cardSection}>
@@ -68,6 +85,15 @@ function Login() {
           </Form>
           <section className='text-center'>
             No Account Yet? <Link to='/register'>Click here to Register</Link>
+          </section>
+          <section className='text-center'>
+            <Link
+              onClick={() => {
+                handleLogin(testUser);
+              }}
+            >
+              Click here to browse the Shop
+            </Link>
           </section>
         </Card>
       </section>

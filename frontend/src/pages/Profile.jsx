@@ -74,7 +74,6 @@ function Profile() {
                 // placeholder={loggedUser.data.user.name}
                 name={"avatar"} //naming the img file being sent
                 // defaultValue={loggedUser.data.user.name}
-                required={"required"}
               />
             </article>
             {/* name */}

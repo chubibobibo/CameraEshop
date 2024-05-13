@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useLoaderData, Form, Link } from "react-router-dom";
+import { useLoaderData, Form, Link, redirect } from "react-router-dom";
 import { useContext } from "react";
 
 //context
@@ -23,6 +23,7 @@ export const loader = async ({ params }) => {
   } catch (err) {
     console.log(err);
     toast.error(err?.response?.data?.message);
+    return redirect("/dashboard");
   }
 };
 
@@ -30,7 +31,7 @@ function SpecificProduct() {
   //product from loader function
   const productData = useLoaderData();
   const prodId = productData.data.foundProduct._id;
-  //   console.log(prodId);
+  // console.log(productData);
 
   //obtain context from parent(dashbaord page)
   const context = useContext(DashboardContext);
@@ -42,7 +43,7 @@ function SpecificProduct() {
       <Card
         className='max-w-xl'
         imgAlt='mirrorless camera'
-        imgSrc='https://images.unsplash.com/photo-1578606460787-c1725b634269?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        imgSrc={productData.data.foundProduct.avatarUrl}
       >
         <a href='#'>
           <h5 className='text-xl font-semibold tracking-tight text-gray-900 dark:text-white'>
@@ -107,9 +108,6 @@ function SpecificProduct() {
               label={"Add to cart"}
               size={"sm"}
               color={"dark"}
-              // onClick={() => {
-              //   addToCart(prodId.toString());
-              // }}
             />
           </Form>
           {/* deleting specific product */}
