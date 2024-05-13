@@ -19,6 +19,7 @@ export const addToCart = async (req, res) => {
   await UserModel.findById(req.user.userId);
 
   //updating the logged user's cart
+  //using the foundUser and the id of the found product
   const newItem = await UserModel.findByIdAndUpdate(
     req.user.userId,
     {
