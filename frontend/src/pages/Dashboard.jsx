@@ -23,13 +23,13 @@ export const loader = async () => {
 
 function Dashboard() {
   const userData = useLoaderData();
-  //   console.log(userData);
+  // console.log(userData);
   return (
     <div>
       {/* pass the user data from loader function to navbar and all the child components (Outlet) */}
       <DashboardContext.Provider value={userData}>
         <Navbar />
-        <Outlet />
+        <Outlet context={userData} />
       </DashboardContext.Provider>
     </div>
   );

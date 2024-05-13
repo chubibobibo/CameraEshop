@@ -25,8 +25,8 @@ function NavbarComponent() {
   const logoutUser = async () => {
     try {
       await axios.get("/api/users/logout");
-      navigate("/");
       toast.success("User is logged out");
+      return navigate("/login");
     } catch (err) {
       console.log(err);
     }
@@ -35,11 +35,6 @@ function NavbarComponent() {
   return (
     <Navbar fluid rounded className='bg-black m-1 '>
       <Navbar.Brand href='/'>
-        {/* <img
-          src='/favicon.svg'
-          className='mr-3 h-6 sm:h-9'
-          alt='Flowbite React Logo'
-        /> */}
         <span className='self-center whitespace-nowrap text-xl font-semibold dark:text-white text-slate-300'>
           Camera E-Shop
         </span>
@@ -82,12 +77,13 @@ function NavbarComponent() {
           )}
 
           {/* updating profile if logged in */}
-          {loggedUser && (
-            <Dropdown.Item>
-              <Link to='/dashboard/profile'>Update Profile</Link>
-            </Dropdown.Item>
-          )}
-          <Dropdown.Item>View my Cart</Dropdown.Item>
+          {loggedUser &&
+            loggedUser.data.user._id !== "661274424fda4ac1fd6a0fe7" && (
+              <Dropdown.Item>
+                <Link to='/dashboard/profile'>Update Profile</Link>
+              </Dropdown.Item>
+            )}
+          {/* <Dropdown.Item>View my Cart</Dropdown.Item> */}
           {/* <Dropdown.Item>Earnings</Dropdown.Item> */}
           <Dropdown.Divider />
           <Dropdown.Item onClick={logoutUser}>Sign out</Dropdown.Item>
@@ -99,17 +95,17 @@ function NavbarComponent() {
         <Navbar.Link href='/' className='text-slate-300'>
           Home
         </Navbar.Link>
-        <Navbar.Link href='#' className='text-slate-300'>
+        {/* <Navbar.Link href='#' className='text-slate-300'>
           About
-        </Navbar.Link>
+        </Navbar.Link> */}
         <Navbar.Link href='/dashboard/' className='text-slate-300'>
           Product Categories
         </Navbar.Link>
-        <Navbar.Link href='#' className='text-slate-300'>
+        {/* <Navbar.Link href='#' className='text-slate-300'>
           Pricing
-        </Navbar.Link>
+        </Navbar.Link> */}
         <Navbar.Link href='#' className='text-slate-300'>
-          Contact
+          Contact Us
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
